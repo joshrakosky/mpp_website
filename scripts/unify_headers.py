@@ -39,8 +39,8 @@ def header_html(active_href: str | None) -> str:
     lis.append(SEARCH)
     return f"""  <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="Metro Branded Products home">
-        <img src="assets/mpp-logo.png" alt="Metro Branded Products" class="brand-logo" />
+      <a class="brand" href="index.html" aria-label="Metro Printed Products home">
+        <img src="assets/mpp-logo.png" alt="Metro Printed Products" class="brand-logo" />
       </a>
 
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle menu">
