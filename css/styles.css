@@ -300,36 +300,48 @@ button.btn {
 }
 
 /* ---------- Hero ---------- */
-/* Split layout: HTML owns all type/CTAs (sharp), photo panel uses the
-   high-res crop from hero-banner-source.jpg. Avoids scaling bitmap text. */
+/* Show the attached banner file as-is (type + diagonal + merch).
+   HTML only adds the two CTAs in the open navy under the subhead. */
 .hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-  height: 500px;
-  min-height: 500px;
-  max-height: 500px;
   position: relative;
+  display: block;
+  width: 100%;
   overflow: hidden;
+  /* Exact Metro banner ratio — object-fit:cover won't crop when this matches */
+  aspect-ratio: 1920 / 500;
   background: var(--navy-deep);
 }
 
+.hero-banner {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  z-index: 0;
+}
+
 .hero-copy {
-  background: linear-gradient(145deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-mid) 100%);
-  color: var(--white);
-  display: flex;
-  align-items: center;
-  clip-path: polygon(0 0, 100% 0, 92% 100%, 0 100%);
+  position: absolute;
+  inset: 0;
   z-index: 1;
+  background: transparent;
+  color: var(--white);
+  pointer-events: none;
 }
 
 .hero-copy-inner {
-  padding: 2rem 2.25rem 2.35rem clamp(1.25rem, 4vw, 3.25rem);
+  position: absolute;
+  left: 4.5%;
+  /* Open navy under baked-in subhead — CTAs only (headlines stay in the art) */
+  bottom: 11%;
+  top: auto;
   max-width: 540px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
+  width: min(46%, 540px);
   animation: heroUp 0.7s ease 0.12s both;
+  pointer-events: auto;
 }
 
 @keyframes heroUp {
@@ -337,15 +349,20 @@ button.btn {
   to { opacity: 1; transform: none; }
 }
 
-.hero h1 {
-  margin: 0 0 0.75rem;
-  font-size: clamp(1.7rem, 3.1vw, 2.45rem);
-  font-weight: 800;
-  line-height: 1.12;
-  letter-spacing: -0.02em;
+/* Desktop: headlines are in the banner image — keep in DOM for a11y/mobile */
+.hero h1,
+.hero-sub {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
-/* Orange brush under "One Source." */
 .hero-accent {
   position: relative;
   display: inline-block;
@@ -367,37 +384,15 @@ button.btn {
   pointer-events: none;
 }
 
-.hero-sub {
-  margin: 0 0 1.85rem;
-  font-size: clamp(1.05rem, 1.7vw, 1.3rem);
-  font-weight: 600;
-  line-height: 1.35;
-  color: var(--blue-soft);
-}
-
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
 }
 
+/* Merch crop is mobile-only */
 .hero-media {
-  position: relative;
-  /* Pull under the diagonal seam WITHOUT leaving a gap on the right:
-     negative margin alone shrinks the visible right edge — widen to match. */
-  margin-left: -8%;
-  width: calc(100% + 8%);
-  height: 100%;
-  overflow: hidden;
-  background: var(--navy-deep);
-}
-
-.hero-media img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 70% center;
+  display: none;
 }
 
 /* ---------- Trust bar ---------- */
@@ -795,33 +790,73 @@ a.value-item:hover {
   }
 
   .hero {
-    grid-template-columns: 1fr;
-    height: auto;
-    min-height: 0;
-    max-height: none;
+    aspect-ratio: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-banner {
+    display: none;
   }
 
   .hero-copy {
-    clip-path: none;
+    position: relative;
+    inset: auto;
+    background: linear-gradient(145deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-mid) 100%);
   }
 
   .hero-copy-inner {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    top: auto;
     max-width: none;
+    width: 100%;
     padding: 2.25rem 1.5rem;
   }
 
+  .hero h1,
+  .hero-sub {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    clip: auto;
+    overflow: visible;
+    white-space: normal;
+  }
+
   .hero h1 {
+    margin: 0 0 0.75rem;
     font-size: clamp(1.7rem, 7vw, 2.2rem);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
   }
 
   .hero-sub {
     margin: 0 0 1.15rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--blue-soft);
   }
 
   .hero-media {
-    margin-left: 0;
+    display: block;
+    position: relative;
     width: 100%;
     height: 280px;
+    overflow: hidden;
+    background: var(--navy-deep);
+  }
+
+  .hero-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
   }
 
   .nwboc-badge {

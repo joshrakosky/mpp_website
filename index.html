@@ -50,11 +50,19 @@
 
   <main>
     <!--
-      Split hero from the full-res banner drop:
-      - Left: HTML type + CTAs (always sharp; never scaled bitmap text)
-      - Right: photo crop from assets/hero-banner-source.jpg
+      Full attached banner art as the hero (diagonal, type, merch — unchanged).
+      Only the two CTAs are HTML, sitting in the open navy under the subhead.
+      Mobile: hide flat banner (type would be tiny) → HTML copy + merch crop.
     -->
     <section class="hero" aria-labelledby="hero-heading">
+      <img
+        class="hero-banner"
+        src="assets/hero-banner.jpg?v=3"
+        alt=""
+        width="1920"
+        height="500"
+        decoding="async"
+      />
       <div class="hero-copy">
         <div class="hero-copy-inner">
           <h1 id="hero-heading">
