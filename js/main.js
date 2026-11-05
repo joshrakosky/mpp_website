@@ -1,6 +1,6 @@
 /**
- * Metro demo — light interactivity.
- * Mobile nav + custom project dialog (same flow as syk_homepage).
+ * Metro site — shared interactivity for homepage + interior pages.
+ * Mobile nav (same header everywhere) + optional custom-project dialog.
  */
 (function () {
   const toggle = document.querySelector(".nav-toggle");
@@ -19,7 +19,6 @@
       nav.classList.toggle("is-open", !open);
     });
 
-    // Expand dropdown sections on mobile when parent is tapped
     nav.querySelectorAll(".has-dropdown > .nav-link").forEach((link) => {
       link.addEventListener("click", (event) => {
         if (window.matchMedia("(max-width: 900px)").matches) {
@@ -29,20 +28,18 @@
       });
     });
 
-    // Close menu after in-page nav clicks
-    nav.querySelectorAll("a[href^='#']").forEach((anchor) => {
+    // Close drawer after any in-nav destination click on small screens
+    nav.querySelectorAll("a").forEach((anchor) => {
       anchor.addEventListener("click", () => {
-        if (window.matchMedia("(max-width: 900px)").matches) {
-          if (!anchor.parentElement.classList.contains("has-dropdown")) {
-            toggle.setAttribute("aria-expanded", "false");
-            nav.classList.remove("is-open");
-          }
-        }
+        if (!window.matchMedia("(max-width: 900px)").matches) return;
+        if (anchor.parentElement.classList.contains("has-dropdown")) return;
+        toggle.setAttribute("aria-expanded", "false");
+        nav.classList.remove("is-open");
       });
     });
   }
 
-  // --- Custom project modal (open → validate → confirmation) ---
+  // --- Custom project modal (homepage only) ---
   const projectDialog = document.getElementById("custom-project");
   const projectSent = document.getElementById("project-sent");
   if (!projectDialog || !projectSent) return;
@@ -61,7 +58,6 @@
   });
 
   form.addEventListener("submit", (event) => {
-    // Demo only — no network send; show confirmation after HTML5 validation
     event.preventDefault();
     projectDialog.close();
     projectSent.showModal();

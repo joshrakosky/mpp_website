@@ -4,24 +4,46 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Why Metro? | Metro Printed Products</title>
-  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  <header>
-    <div class="bar">
-      <a href="index.html"><img class="logo" src="assets/metro-logo.png" alt="Metro Printed Products Powered by Proforma" /></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle menu"><span></span><span></span><span></span></button>
-      <nav id="site-nav">
-        <a href="index.html">Home</a>
-        <a href="about-us.html">About Us</a>
-        <a href="our-team.html">Our Team</a>
-        <a href="why-metro.html">Why Metro?</a>
-        <a href="eqp-program.html">EQP Program</a>
-        <a class="search" href="https://metroprintedproducts.com">Search Promotional Products</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Metro Branded Products home">
+        <img src="assets/mpp-logo.png" alt="Metro Branded Products" class="brand-logo" />
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="primary-nav" id="primary-nav" aria-label="Primary">
+        <ul class="nav-list">
+          <li><a class="nav-link" href="index.html">Home</a></li>
+          <li><a class="nav-link" href="about-us.html">About Us</a></li>
+          <li><a class="nav-link" href="our-team.html">Our Team</a></li>
+          <li><a class="nav-link is-active" href="why-metro.html">Why Metro?</a></li>
+          <li><a class="nav-link" href="eqp-program.html">EQP Program</a></li>
+          <li class="nav-search-mobile">
+            <a class="btn btn-search" href="https://metroprintedproducts.com">Search Products</a>
+          </li>
+        </ul>
       </nav>
+
+      <a class="btn btn-search btn-search-desktop" href="https://metroprintedproducts.com">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+          <path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        Search Products
+      </a>
     </div>
   </header>
 
-  <section class="hero">
+  <section class="page-hero">
     <div class="hero-inner">
       <div class="eyebrow">Metro Printed Products / Why Metro</div>
       <h1>Why Choose Metro</h1>
@@ -50,24 +72,25 @@
           <p>Our greatest advantage isn't simply what we can provide. It's how we take care of our customers and our ability to offer our EQP program to all of our customers.</p>
           <p class="accent">One partner. Infinite resources.</p>
           <p class="panel-action">
-            <a class="btn" href="index.html#capabilities">Explore Our Capabilities</a>
+            <a class="btn btn-primary" href="index.html#capabilities">Explore Our Capabilities</a>
           </p>
         </section>
       </div>
 
-      <section class="cta">
+      <section class="page-cta">
         <div>
           <h2>Ready to Bring Your Brand to Life?</h2>
           <p>One Source. Infinite Resources.</p>
         </div>
         <div class="buttons">
-          <a class="btn" href="index.html#cta">Start a Custom Project</a>
+          <a class="btn btn-primary" href="index.html#cta">Start a Custom Project</a>
           <a class="btn alt" href="about-us.html">About Metro</a>
         </div>
       </section>
     </div>
   </main>
 
-  <footer>Metro Printed Products · Powered by Proforma · Woman-Owned · NWBOC-Certified</footer>
-<script src="assets/nav.js"></script></body>
+  <footer class="site-footer">Metro Printed Products · Powered by Proforma · Woman-Owned · NWBOC-Certified</footer>
+  <script src="js/main.js"></script>
+</body>
 </html>

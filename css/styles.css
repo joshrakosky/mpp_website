@@ -13,11 +13,13 @@
   --gray-200: #e2e2e2;
   --muted: #555555;
   --text: #1a1a1a;
+  --blue-soft: #7eb8e0;
   --shadow-card: 0 4px 18px rgba(0, 51, 102, 0.08);
   --radius: 5px;
   --header-h: 78px;
   --font: "Montserrat", system-ui, sans-serif;
   --container: 1180px;
+  --max: 1100px;
 }
 
 *,
@@ -184,9 +186,14 @@ button.btn {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
+  transition: color 0.15s ease, font-size 0.15s ease;
 }
 
-.nav-link:hover,
+.nav-link:hover {
+  color: var(--orange);
+  font-size: 0.86rem;
+}
+
 .nav-link.is-active {
   color: var(--navy-deep);
 }
@@ -200,6 +207,11 @@ button.btn {
   height: 2px;
   background: var(--orange);
   border-radius: 1px;
+}
+
+/* Mobile-only search row inside the open hamburger panel */
+.nav-search-mobile {
+  display: none;
 }
 
 .caret {
@@ -288,15 +300,17 @@ button.btn {
 }
 
 /* ---------- Hero ---------- */
+/* Split layout: HTML owns all type/CTAs (sharp), photo panel uses the
+   high-res crop from hero-banner-source.jpg. Avoids scaling bitmap text. */
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-  /* Fixed banner height per design feedback */
   height: 500px;
   min-height: 500px;
   max-height: 500px;
   position: relative;
   overflow: hidden;
+  background: var(--navy-deep);
 }
 
 .hero-copy {
@@ -304,15 +318,13 @@ button.btn {
   color: var(--white);
   display: flex;
   align-items: center;
-  /* Diagonal edge toward the photo */
   clip-path: polygon(0 0, 100% 0, 92% 100%, 0 100%);
   z-index: 1;
 }
 
 .hero-copy-inner {
-  padding: 1.75rem 2.25rem 1.75rem clamp(1.25rem, 4vw, 3.25rem);
+  padding: 2rem 2.25rem 2.35rem clamp(1.25rem, 4vw, 3.25rem);
   max-width: 540px;
-  /* Keep headline + CTAs visible inside the fixed 500px banner */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -333,7 +345,7 @@ button.btn {
   letter-spacing: -0.02em;
 }
 
-/* Orange brush stroke under "Infinite" */
+/* Orange brush under "One Source." */
 .hero-accent {
   position: relative;
   display: inline-block;
@@ -356,20 +368,11 @@ button.btn {
 }
 
 .hero-sub {
-  margin: 0 0 0.85rem;
+  margin: 0 0 1.85rem;
   font-size: clamp(1.05rem, 1.7vw, 1.3rem);
   font-weight: 600;
   line-height: 1.35;
-  /* Soft brand blue from the mockup subhead */
-  color: #7eb8e0;
-}
-
-.hero-body {
-  margin: 0 0 1.25rem;
-  font-size: 0.85rem;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.88);
-  max-width: 42ch;
+  color: var(--blue-soft);
 }
 
 .hero-actions {
@@ -380,17 +383,21 @@ button.btn {
 
 .hero-media {
   position: relative;
-  background: var(--gray-100);
-  margin-left: -6%;
+  /* Pull under the diagonal seam WITHOUT leaving a gap on the right:
+     negative margin alone shrinks the visible right edge — widen to match. */
+  margin-left: -8%;
+  width: calc(100% + 8%);
   height: 100%;
   overflow: hidden;
+  background: var(--navy-deep);
 }
 
 .hero-media img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 35%;
+  object-position: 70% center;
 }
 
 /* ---------- Trust bar ---------- */
@@ -723,8 +730,19 @@ a.value-item:hover {
     display: flex;
   }
 
-  .btn-search {
+  .btn-search-desktop {
     display: none;
+  }
+
+  .nav-search-mobile {
+    display: list-item;
+    width: 100%;
+    padding-top: 0.5rem;
+  }
+
+  .nav-search-mobile .btn-search {
+    width: 100%;
+    justify-content: center;
   }
 
   .primary-nav {
@@ -792,13 +810,18 @@ a.value-item:hover {
     padding: 2.25rem 1.5rem;
   }
 
-  .hero-media {
-    margin-left: 0;
-    height: 280px;
+  .hero h1 {
+    font-size: clamp(1.7rem, 7vw, 2.2rem);
   }
 
-  .hero-media img {
-    height: 100%;
+  .hero-sub {
+    margin: 0 0 1.15rem;
+  }
+
+  .hero-media {
+    margin-left: 0;
+    width: 100%;
+    height: 280px;
   }
 
   .nwboc-badge {
@@ -994,4 +1017,245 @@ a.value-item:hover {
   text-decoration: underline;
   text-underline-offset: 3px;
   transform: none;
+}
+
+/* ============================================================
+   Interior pages (merged from assets/styles.css)
+   Uses .page-hero so it does not collide with the homepage .hero
+   ============================================================ */
+
+.page-hero {
+  background:
+    linear-gradient(120deg, rgba(0, 38, 77, 0.92) 0%, rgba(0, 51, 102, 0.88) 55%, rgba(0, 51, 102, 0.72) 100%),
+    url("../assets/metro-wave-background.png") center / cover;
+  color: var(--white);
+  padding: 3.5rem 0 3rem;
+}
+
+.page-hero .hero-inner {
+  width: min(100% - 2rem, var(--max));
+  margin: 0 auto;
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--blue-soft);
+  margin-bottom: 0.65rem;
+}
+
+.page-hero h1 {
+  margin: 0 0 0.65rem;
+  font-size: clamp(1.7rem, 3.2vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  max-width: 18ch;
+}
+
+.page-hero > .hero-inner > p,
+.page-hero .hero-inner > p {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--blue-soft);
+}
+
+.shell {
+  background: var(--gray-50);
+  padding: 2.5rem 0 3.5rem;
+}
+
+.content {
+  width: min(100% - 2rem, var(--max));
+  margin: 0 auto;
+}
+
+.intro {
+  background: var(--white);
+  border-radius: 8px;
+  padding: 1.5rem 1.6rem;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 1.25rem;
+}
+
+.intro p {
+  margin: 0 0 0.9rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.intro p:last-child {
+  margin-bottom: 0;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.panel {
+  background: var(--white);
+  border-radius: 8px;
+  padding: 1.4rem 1.5rem;
+  box-shadow: var(--shadow-card);
+}
+
+.panel h2 {
+  margin: 0 0 1rem;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--navy);
+}
+
+.item {
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--gray-100);
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.item strong {
+  color: var(--navy);
+  font-weight: 700;
+}
+
+.panel > p {
+  margin: 0 0 0.9rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.panel > p:last-child {
+  margin-bottom: 0;
+}
+
+.accent {
+  color: var(--orange) !important;
+  font-weight: 700 !important;
+}
+
+.cert {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: var(--gray-50);
+  border-radius: var(--radius);
+}
+
+.cert img {
+  height: 42px;
+  width: auto;
+}
+
+.cert span {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.panel-action {
+  margin: 1rem 0 0;
+}
+
+.eqp-example {
+  margin-bottom: 1.25rem;
+  background: var(--white);
+  border-radius: 8px;
+  padding: 1.25rem;
+  box-shadow: var(--shadow-card);
+  text-align: center;
+}
+
+.eqp-visual {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 880px;
+}
+
+.eqp-visual img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  background: var(--gray-50);
+}
+
+.eqp-caption {
+  margin: 0.75rem 0 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.page-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  background: var(--navy);
+  color: var(--white);
+  border-radius: 8px;
+  padding: 1.5rem 1.6rem;
+}
+
+.page-cta h2 {
+  margin: 0 0 0.25rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.page-cta p {
+  margin: 0;
+  color: var(--blue-soft);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.page-cta .buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.btn.alt {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.85);
+  color: var(--white);
+}
+
+.btn.alt:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* .site-footer lives with the homepage footer block above — shared by all pages */
+
+@media (max-width: 900px) {
+  .two-col {
+    grid-template-columns: 1fr;
+  }
+
+  .page-cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-hero {
+    padding: 2.5rem 0 2.25rem;
+  }
 }

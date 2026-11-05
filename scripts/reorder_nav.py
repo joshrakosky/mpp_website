@@ -9,7 +9,7 @@ nav_pretty = """<a href="index.html">Home</a>
         <a href="our-team.html">Our Team</a>
         <a href="why-metro.html">Why Metro?</a>
         <a href="eqp-program.html">EQP Program</a>
-        <a class="search" href="https://metroprintedproducts.com">Search Promotional Products</a>"""
+        <a class="search" href="https://metroprintedproducts.com">Search Products</a>"""
 
 nav_mini = (
     '<a href="index.html">Home</a>'
@@ -17,11 +17,11 @@ nav_mini = (
     '<a href="our-team.html">Our Team</a>'
     '<a href="why-metro.html">Why Metro?</a>'
     '<a href="eqp-program.html">EQP Program</a>'
-    '<a class="search" href="https://metroprintedproducts.com">Search Promotional Products</a>'
+    '<a class="search" href="https://metroprintedproducts.com">Search Products</a>'
 )
 
 pat = re.compile(
-    r'<a href="index\.html">Home</a>.*?<a class="search" href="https://metroprintedproducts\.com">Search Promotional Products</a>',
+    r'<a href="index\.html">Home</a>.*?<a class="search" href="https://metroprintedproducts\.com">Search Products</a>',
     re.DOTALL,
 )
 
