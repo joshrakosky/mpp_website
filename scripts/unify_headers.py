@@ -40,7 +40,7 @@ def header_html(active_href: str | None) -> str:
     return f"""  <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html" aria-label="Metro Printed Products home">
-        <img src="assets/mpp-logo.png" alt="Metro Printed Products" class="brand-logo" />
+        <img src="assets/mpp_logo.svg" alt="Metro Printed Products" class="brand-logo" />
       </a>
 
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle menu">

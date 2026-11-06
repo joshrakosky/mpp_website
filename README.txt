@@ -8,7 +8,7 @@ Stylesheet (single source of truth):
 Shared header + mobile nav script:
   js/main.js
 
-Images and logos live in assets/ (hero-banner-source.jpg, hero-merch.jpg, mpp-logo.png, etc.).
+Images and logos live in assets/ (hero-banner-source.jpg, hero-merch.jpg, mpp_logo.svg, etc.).
 
 Navigation: Home, About Us, Our Team, Why Metro?, EQP Program, plus Search Products.
 Active page shows the orange underline; hover turns links orange with a slight size bump.
