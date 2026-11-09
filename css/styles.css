@@ -340,8 +340,8 @@ button.btn {
 .hero-copy-inner {
   position: absolute;
   left: 4.5%;
-  /* Open navy under baked-in subhead — CTAs only (headlines stay in the art) */
-  bottom: 11%;
+  /* Sit clear of baked-in subhead ("All in One Place") in the banner art */
+  bottom: 5%;
   top: auto;
   max-width: 540px;
   width: min(46%, 540px);
