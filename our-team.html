@@ -28,12 +28,12 @@
           <li><a class="nav-link" href="why-metro.html">Why Metro?</a></li>
           <li><a class="nav-link" href="eqp-program.html">EQP Program</a></li>
           <li class="nav-search-mobile">
-            <a class="btn btn-search" href="https://metroprintedproducts.com">Search Products</a>
+            <a class="btn btn-search" href="https://metroprintedproducts.com" target="_blank" rel="noopener noreferrer">Search Products</a>
           </li>
         </ul>
       </nav>
 
-      <a class="btn btn-search btn-search-desktop" href="https://metroprintedproducts.com">
+      <a class="btn btn-search btn-search-desktop" href="https://metroprintedproducts.com" target="_blank" rel="noopener noreferrer">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
           <path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -82,7 +82,7 @@
           <p>One Source. Infinite Resources.</p>
         </div>
         <div class="buttons">
-          <a class="btn btn-primary" href="index.html#cta">Start a Custom Project</a>
+          <button type="button" class="btn btn-primary" data-open-project>Start a Custom Project</button>
           <a class="btn alt" href="why-metro.html">Why Choose Metro?</a>
         </div>
       </section>
@@ -90,6 +90,62 @@
   </main>
 
   <footer class="site-footer">Metro Printed Products · Powered by Proforma · Woman-Owned · NWBOC-Certified</footer>
+  
+  <!-- Shared custom-project form (same as homepage) -->
+  <dialog class="modal" id="custom-project" aria-labelledby="project-title">
+    <form class="modal__panel" method="dialog">
+      <div class="modal__head">
+        <h2 id="project-title">Start a Custom Project</h2>
+        <button type="button" class="modal__close" data-close aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <p class="modal__lead">Tell us who to reach and what you need in hand.</p>
+
+      <div class="modal__grid">
+        <label>Full name
+          <input type="text" name="name" autocomplete="name" required />
+        </label>
+        <label>Email
+          <input type="email" name="email" autocomplete="email" required />
+        </label>
+        <label>Phone
+          <input type="tel" name="phone" autocomplete="tel" />
+        </label>
+        <label>Department
+          <input type="text" name="department" autocomplete="organization" />
+        </label>
+      </div>
+
+      <label>Scope of work
+        <textarea name="scope" rows="5" required placeholder="Quantities, products, branding, budget, shipping, and anything the team should know."></textarea>
+      </label>
+      <label>In-hands date
+        <input type="date" name="in-hands" required />
+      </label>
+
+      <div class="modal__actions">
+        <button type="button" class="btn btn-ghost-dark" data-close>Cancel</button>
+        <button type="submit" class="btn btn-primary" value="submit">Submit request</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="modal" id="project-sent" aria-labelledby="project-sent-title">
+    <div class="modal__panel">
+      <div class="modal__head">
+        <h2 id="project-sent-title">Request received</h2>
+        <button type="button" class="modal__close" data-close-sent aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <p class="modal__lead">A rep will contact you within 30 minutes. If you have any questions, please reach out to <a href="mailto:metroinfo@proforma.com">metroinfo@proforma.com</a>.</p>
+      <div class="modal__actions">
+        <button type="button" class="btn btn-primary" data-close-sent>Close</button>
+      </div>
+    </div>
+  </dialog>
+
   <script src="js/main.js"></script>
 </body>
 </html>
